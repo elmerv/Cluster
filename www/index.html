@@ -1,0 +1,255 @@
+<html ng-app="ionicApp">
+  <head>
+      
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    
+    <title>Scroll X and Y</title>
+
+    <link href="css/css/ionic.css" rel="stylesheet">
+    <script src="css/js/ionic.bundle.js"></script>
+
+ <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+
+  </head>
+<style>
+
+  <body>{
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    display: none;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #00AEEF;
+    overflow-x: hidden;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+header{
+  background-color:#00AEEF;
+}
+
+#yes{
+  background-color: #00AEEF;
+vertical-align: right;
+
+
+}
+</style>
+<ion-view>
+  <header>
+ 
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+  <a href="task.html">My Tasks</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" id="yes" onclick="openNav()" class="button-icon ion-navicon-round "></span>
+
+ 
+
+  <a href="task.html" button class="icon ion-plus" style=" padding-bottom: 10px; margin-left:90%;"></a></button>
+
+</header>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+      <ion-scroll direction="y" style="width: 360px; height: 600px">
+     
+    
+    <br>
+    <br>      
+<div class="list">
+  <div>
+    <div class="item item-divider">
+      <font color="#00AEEF">Monday</font>
+    </div>
+    <div id="Monday">
+      <a class="item" href="#">
+        <p>Learn Javascript and CSS</p>
+        <p>Wireframes</p>
+        <p>Make Dinner</p>
+      </a>
+    </div>
+  </div>
+
+
+  <div id="Tuesday" class="item item-divider">
+ 
+<font color="#00AEEF">Tuesday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Complete book</p>
+  
+  </a>
+
+
+
+  <div id="Wednesday" class="item item-divider">
+ 
+<font color="#00AEEF">Wednesday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Learn Python and CSS</p>
+  </a>
+
+
+
+  <div id="Thursday" class="item item-divider">
+  
+<font color="#00AEEF">Thursday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Learn how to play the guitar</p>
+    <p>Wireframes</p>
+    <p>Make Money</p>
+  </a>
+
+
+  <div id="Friday" class="item item-divider">
+  
+<font id= color="#00AEEF">Friday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Go help out members</p>
+
+  </a>
+
+
+
+  <div id="Saturday" class="item item-divider">
+  
+<font color="#00AEEF">Saturday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Make sure to keep everyone in check</p>
+    
+  </a>
+
+
+  <div id="Sunday" class="item item-divider">
+ 
+<font color="#00AEEF">Sunday</font>
+  </div>
+
+  <a class="item" href="#">
+    <p>Go to the park and collect data.</p>
+   
+  </a>
+</div>
+<br>
+<br>
+</ion-scroll>
+</ion-view>
+
+<script type="text/javascript">
+function openNav() {
+    document.getElementById("mySidenav").style.display = "block";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.display = "none";
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script type="text/javascript">
+var config = {
+        apiKey: "AIzaSyDiPLrLu2KRjnvRRwDVF2DptcHE9pWKKCs",
+        authDomain: "my-app-52d0c.firebaseapp.com",
+        databaseURL: "https://my-app-52d0c.firebaseio.com",
+        storageBucket: "my-app-52d0c.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+ function displayTasks() {
+        // var node = document.getElementById("tasks");
+        // while (node.hasChildNodes())
+        //     node.removeChild(node.lastChild);
+
+        var tasks = firebase.database().ref("tasks");
+        tasks.off();
+
+        var setTask = function(dataSnapshot) {
+            var value = dataSnapshot.val();
+            displayDailyTask(value.task, value.description, value.tag, value.dateEnd);
+        };
+
+        tasks.limitToLast(12).on("child_added", setTask);
+        tasks.limitToLast(12).on("child_changed", setTask);
+    }
+
+function displayDailyTask(taskName, description, tag, dueDate){
+  var container = document.createElement('a');
+  container.className = "item";
+
+  var task = document.createElement('p');
+  task.textContent = taskName;
+  var desc = document.createElement('p');
+  desc.textContent = description;
+  var tags = document.createElement('p');
+  tags.textContent = tag;
+  container.appendChild(task);
+  container.appendChild(desc);
+  container.appendChild(tags);
+
+  document.getElementById(dueDate).appendChild(container);
+}
+
+
+
+window.onload = displayTasks();
+
+
+</script>
+
+
+
+  </body>
+</html>

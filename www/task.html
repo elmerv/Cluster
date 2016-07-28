@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		firebase app
+	</title>
+
+
+    <link href="./css/css/ionic.css" rel="stylesheet">
+
+ <link href="./css/css/Task.css" rel="stylesheet">
+
+<!-- Include the compiled Ratchet CSS -->
+</head>
+<body>
+
+<header>
+<div class="bar bar-header bar-calm">
+  <a href="index.html" button class="button button-icon-icon ion-close"></a></button>
+
+  <h1 class="title">Add Task</h1>
+
+ <button onclick="process();" class="button button-icon-icon ion-checkmark-circled "></button>
+  <div id="tasks"></div>
+</div>
+
+</header>
+<br>
+<br>
+<br>
+
+<div class="list">
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Task</span>
+    <input id ="name" type="text" name="task-name" placeholder="">
+  </label>
+<br>
+
+  <label class="item item-input item-stacked-label">
+    <span id="Description" class="input-label">Description</span>
+    <input id="desc" type="text" name="Description" placeholder="">
+  </label>
+<br>
+  <label class="item item-input item-stacked-label">
+    <span class="input-label">Tag</span>
+    <input id= "tag" type="text" name="team-members" placeholder="@ ">
+  </label>
+</div>
+
+<br>
+Due Date:
+<center><select>
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+  <option value="Saturday">Saturday</option>
+  <option value="Sunday">Sunday</option>
+</select></center>
+<br>
+<br>
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script type="text/javascript ">
+    var config = {
+        apiKey: "AIzaSyDiPLrLu2KRjnvRRwDVF2DptcHE9pWKKCs",
+        authDomain: "my-app-52d0c.firebaseapp.com",
+        databaseURL: "https://my-app-52d0c.firebaseio.com",
+        storageBucket: "my-app-52d0c.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+
+    function process() { 
+         var a = document.getElementById('name').value;
+         var b = document.getElementById('desc').value;
+         var c = document.getElementsByTagName('select');
+         var d = document.getElementById('tag').value;
+        console.log(a, b, c ,d)
+
+        firebase.database().ref('tasks').push({
+          task: a, 
+          description: b,
+          tag: d,
+          dateEnd: c[0].value
+        });
+    }
+</script>
+ <button onclick="process();">Submit</button>
+ </body>
+</html>

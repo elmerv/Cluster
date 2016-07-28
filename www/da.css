@@ -1,0 +1,22 @@
+
+
+body{
+	background-color: #00AEEF;
+}
+
+#logo{
+  border-radius: 25px;
+    width: 160px;
+    height: 150px;
+     padding: 10px; 
+     }
+
+#color{
+	background-color: #00AEEF;
+}
+
+.list{
+	border-radius: 60px;
+	height: 45px;
+	width: 700px;
+}

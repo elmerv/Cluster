@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		firebase app
+	</title>
+
+
+    <link href="css/css/ionic.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="da.css">
+
+<!-- Include the compiled Ratchet CSS -->
+</head>
+<body>
+<br>
+<br>
+<br>
+<center><img id="logo" src="logo.png"></center>
+
+
+
+<center><div class="list">
+  <label class="item item-input">
+    <span class="input-label">Email</span>
+    <input class ="md1-textfield_input" type="text" id="email" name="email">
+  </label>
+  <br>
+  <label class="item item-input">
+    <span class="input-label">Password</span>
+    <input class="md1-textfield_input" id="password" name="password" type="password">
+  </label>
+</div></center>
+        
+        <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+       <center><button class="button button button-light" id="quickstart-sign-in" name="signin">Sign In</button></center>
+          &nbsp;&nbsp;&nbsp;
+          </div>
+          <div><center><button class="button button button-light" id="quickstart-sign-up" name="signup">Sign Up</button></center></div>
+          &nbsp;&nbsp;&nbsp;
+          <div><center><button class="button button button-light" disabled id="quickstart-verify-email" name="verify-email">Send Email Verification</button></center></div>
+          &nbsp;&nbsp;&nbsp;
+          <div><center><button class="button button button-light" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button></center></div>
+
+          <!-- Container where we'll display the user details -->
+          
+<!--             <div>Firebase auth <code>currentUser</code> object value:</div>
+ --><!--            <code id="quickstart-account-details">null</code> -->
+          </div>
+        
+      </div>
+
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+<script src="app.js"> </script>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAOemi5MAgVcmIY1II_HYgNmf6P8yIsaD4",
+    authDomain: "friendlychat-c3b37.firebaseapp.com",
+    databaseURL: "https://friendlychat-c3b37.firebaseio.com",
+    storageBucket: "friendlychat-c3b37.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+    
+
+</body>
+</html>

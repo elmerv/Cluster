@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link href="css/css/ionic.css" rel="stylesheet">
+
+<script src='fullcalendar/lib/jquery.min.js'></script>
+<script src='fullcalendar/lib/moment.min.js'></script>
+<script src='fullcalendar/fullcalendar.js'></script>
+
+<head>
+<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='scheduler/scheduler.css' rel='stylesheet' />
+<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='fullcalendar/lib/moment.js'></script>
+<script src='fullcalendar/lib/jquery.js'></script>
+<script src='fullcalendar/fullcalendar.js'></script>
+<script src='scheduler/scheduler.js'></script>
+ <script type="text/javascript">
+   
+
+$(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+      //schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives'
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultDate: '2016-01-12',
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2016-01-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2016-01-07',
+          end: '2016-01-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2016-01-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2016-01-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2016-01-11',
+          end: '2016-01-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2016-07-22T10:30:00',
+          end: '2016-01-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2016-07-22T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2016-07-22T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2016-07-22T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2016-07-22T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2016-01-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2016-07-28'
+        }
+      ]
+      
+    });
+
+});
+</script>
+</head>
+<body>
+<div class="bar bar-header bar-calm">
+ 
+  <div class="h1 title">Calendar</div>
+  <a href="index4.html" button class="button ion-plus-circled"></button></a>
+</div>
+</div>
+
+<div class="tabs tabs-icon-top">
+  <a href="j.html" class="tab-item">
+    <i class="icon ion-edit"></i>
+    My Task
+  </a>
+  <a href="index4.html" class="tab-item">
+    <i class="icon ion-plus"></i>
+    Task
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-android-chat"></i>
+    
+  </a>
+</div>
+
+</body>
+</html>

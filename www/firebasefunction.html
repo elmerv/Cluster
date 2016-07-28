@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <form>
+        <input type="text" name="task-name" placeholder="Task Name">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="team-members" placeholder="@team">
+    </form>
+    <button onclick="process();">Sumbit!</button>
+    <div id="tasks"></div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script type="text/javascript">
+    var config = {
+        apiKey: "AIzaSyDiPLrLu2KRjnvRRwDVF2DptcHE9pWKKCs",
+        authDomain: "my-app-52d0c.firebaseapp.com",
+        databaseURL: "https://my-app-52d0c.firebaseio.com",
+        storageBucket: "my-app-52d0c.appspot.com",
+    };
+
+    firebase.initializeApp(config);
+
+
+    function process() {
+        var tasks = firebase.database().ref("tasks");
+        var inputs = document.getElementsByTagName("input");
+
+        tasks.push({
+            taskName: inputs[0].value,
+            description: inputs[1].value,
+            startDate: inputs[2].value,
+             dueDate: inputs[3].value,
+            tags: inputs[4].value,
+            
+            complete: false
+        });
+
+        inputs[0].value = "";
+        inputs[1].value = "";
+        inputs[2].value = "";
+        inputs[3].value = "";
+        inputs[4].value = "";
+       
+
+        displayTasks();
+    }
+
+    function displayTasks() {
+        var node = document.getElementById("tasks");
+        while (node.hasChildNodes())
+            node.removeChild(node.lastChild);
+
+        var tasks = firebase.database().ref("tasks");
+        // tasks.once("value").then(function(dataSnapshot) {
+        //     var value = dataSnapshot.val()[Object.keys(dataSnapshot.val())[0]];
+        //     displayTask(value.taskName, value.description, value.tags);
+        // });
+        tasks.off();
+
+        var setTask = function(dataSnapshot) {
+            var value = dataSnapshot.val();
+            displayTask(value.taskName, value.description, value.tags);
+        };
+
+        tasks.limitToLast(12).on("child_added", setTask);
+        tasks.limitToLast(12).on("child_changed", setTask);
+    }
+
+    function displayTask(n, d, t, v, m) {
+        var div = document.createElement("div");
+        var taskName = document.createElement("h1");
+        var description = document.createElement("h2");
+        var startDate =document.createElement("h3")
+        var dueDate =document.createElement("h4")
+        var team = document.createElement("h5");
+
+
+        taskName.textContent = n;
+        description.textContent = d;
+        startDate.textContent =t;
+        dueDate.textContent =v;
+        team.textContent = m;
+
+        div.appendChild(taskName);
+        div.appendChild(description);
+        div.appendChild(startDate);
+        div.appendChild(dueDate);
+        div.appendChild(team);
+
+        document.getElementById("tasks").appendChild(div);
+    }
+
+    window.onload = displayTask("Tigo", "Siempre te acompaña", "Tigo, ¡siempre contigo!");
+</script>
+</html>
